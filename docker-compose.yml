@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  spring-boot-redis-app:
+    build: .
+    ports:
+      - 80:80
+    networks:
+      - spring-boot-redis-app-network
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
+    hostname: redis
+    volumes:
+      - ~/java/db/redis:/data
+    ports:
+      - 6387:6379
+    networks:
+          - spring-boot-redis-app-network
+
+networks:
+  spring-boot-redis-app-network:
