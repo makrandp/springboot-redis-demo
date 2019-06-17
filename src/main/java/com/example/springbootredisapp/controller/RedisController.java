@@ -17,13 +17,13 @@ public class RedisController {
 	@GetMapping("/")
 	public String index() 
 	{
-		return "hi";
+		return "Index Route - visit /get route";
 	}
 	
 	@GetMapping("/get")
 	public String getAllTodos() 
 	{
-		Jedis jedis = new Jedis("redis", 6379);
+		Jedis jedis = new Jedis(this.redisHost, this.redisPort);
 		jedis.set("key", "value");
 		return jedis.get("key");
 	}
